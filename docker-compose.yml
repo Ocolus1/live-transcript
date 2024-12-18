@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ai-service:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    volumes:
+      - ./models:/app/models
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
